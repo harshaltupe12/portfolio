@@ -1,9 +1,17 @@
-import Image from "next/image";
+import About from "./about/page";
+import Home from "./home/page";
+import WhatIDo from "./info/page"
+import Skills from "./skills/page";
 
-export default function Home() {
+export default function Main() {
   return (
     <div className="">
-      Hello world
+      <div className="">
+      <Home/>
+      </div>
+      <WhatIDo/>
+      <About/>
+      <Skills/>
     </div>
   );
 }
