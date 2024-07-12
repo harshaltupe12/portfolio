@@ -41,7 +41,7 @@ function Home() {
             <br />
           </div>
         </div>
-        <div className="md:mt-4 my-4 bg-slate-200 ">
+        <div className="md:mt-8 my-4 bg-slate-200 ">
           <span className="bg-gradient-to-tl from-blue-400 via-pink-400 to-violet-400 text-slate-100 md:text-[20px] text-[15px] p-2 rounded-lg">
             {" "}
             Download Resume
