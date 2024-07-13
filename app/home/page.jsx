@@ -6,11 +6,15 @@ import { FlipWords } from "../../components/ui/flip-words";
 import { color } from "framer-motion";
 import { FileDown } from 'lucide-react';
 import WhatIDo from "../info/page";
+import Link from "next/link";
+import Navbar from "../_Components/Navbar";
 
 function Home() {
   const words = ["Software-Developer", "Fullstack-Developer", "REST-API"];
   return (
     <div className="max-h-min md:h-screen relative w-full bg-[#fff] flex flex-col items-center md:justify-center justify-start overflow-hidden rounded-md">
+      {/* <div className="bg-transparent z-20"><Navbar/></div> */}
+      
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticlesfullpage"
@@ -23,9 +27,11 @@ function Home() {
         />
       </div>
       <div className="flex justify-center flex-col items-center z-10 mt-10 md:mt-0">
+        <Link href={"https://github.com/harshaltupe12"} target="_blank">
         <div className="bg-gradient-to-tl from-blue-400 via-blue-100 to-blue-400 w-[max-content] p-2 rounded-lg flex gap-1 font-bold text-gray-700 cursor-pointer hover:scale-105 transition-all">
           Do check GitHub <ArrowRight />
         </div>
+        </Link>
         <h2 className=" my-2 text-[40px] md:text-[70px] font-bold text-gray-900 flex flex-col md:flex-row md:gap-2 gap-0 items-center">
           Hello, This is
           <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-[70px] text-[50px]">
