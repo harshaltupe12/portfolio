@@ -16,6 +16,11 @@ export const HoverEffect = ({
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const handleLink = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return (
     <div
       className={cn(
@@ -25,11 +30,12 @@ export const HoverEffect = ({
     >
       {items.map((item, idx) => (
         <Link
-          href={""}
+          href={"#"}
           key={idx}
           className="relative group  block p-2 h-full w-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
+          onClick={handleLink}
         >
           <AnimatePresence>
             {hoveredIndex === idx && (
