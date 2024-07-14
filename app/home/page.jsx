@@ -24,7 +24,7 @@ function Home() {
           particleColor="#000"
         />
       </div>
-      <div className="flex justify-center flex-col items-center z-10 mt-10 md:mt-0">
+      <div className="flex justify-center flex-col items-center z-10 mt-10 md:mt-0 md:mb-0 mb-[70px]">
         <Link href={"https://github.com/harshaltupe12"} target="_blank">
         <div className="bg-gradient-to-tl from-blue-400 via-blue-100 to-blue-400 w-[max-content] p-2 rounded-lg flex gap-1 font-bold text-gray-700 cursor-pointer hover:scale-105 transition-all">
           Do check GitHub <ArrowRight />
