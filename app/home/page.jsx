@@ -47,9 +47,15 @@ function Home() {
             <br />
           </div>
         </div>
-        <div className="md:mt-8 my-4 cursor-pointer hover:scale-105 transition-all ">
+        <div className="md:mt-8 my-4 flex gap-4">
+          <Link href={"/terminal"}>
+          <span className="cursor-pointer hover:scale-105 transition-all bg-gradient-to-tl from-violet-400 via-pink-300 to-violet-400 text-gray-800 md:text-[15px] text-[15px] p-2 rounded-lg font-bold">
+            {" "}
+            Try this
+          </span>
+          </Link>
           <Link href={"https://drive.google.com/file/d/1619GUOv6KQ0syMXMfWNjCa256k0-fQab/view?usp=sharing"} target="_blank" >
-          <span className="bg-gradient-to-tl from-violet-400 via-pink-300 to-violet-400 text-gray-800 md:text-[15px] text-[15px] p-2 rounded-lg font-bold">
+          <span className="cursor-pointer hover:scale-105 transition-all bg-gradient-to-tl from-violet-400 via-pink-300 to-violet-400 text-gray-800 md:text-[15px] text-[15px] p-2 rounded-lg font-bold">
             {" "}
             Download Resume
           </span>
