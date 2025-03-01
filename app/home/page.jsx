@@ -10,12 +10,24 @@ import { AuroraText } from "@/components/magicui/aurora-text";
 import { AuroraButton } from "@/components/magicui/aura-button";
 
 function Home() {
-  const { theme } = useTheme();
-  const [particleColor, setParticleColor] = useState("#000");
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [particleColor, setParticleColor] = useState("#fff"); // Default to white
   const words = ["Software-Developer", "Fullstack-Developer", "REST-API"];
+  
+  // Handle client-side mounting
   useEffect(() => {
-    setParticleColor(theme === "dark" ? "#fff" : "#000"); // Change color dynamically Main
-  }, [theme]);
+    setMounted(true);
+  }, []);
+  
+  // Update particle color when theme changes
+  useEffect(() => {
+    if (mounted) {
+      const currentTheme = resolvedTheme || theme;
+      setParticleColor(currentTheme === "dark" ? "#fff" : "#000");
+    }
+  }, [theme, resolvedTheme, mounted]);
+
   return (
     <>
       <div className="h-screen md:h-screen relative w-full dark:bg-black bg-[#fff] flex flex-col items-center md:justify-center justify-center overflow-hidden rounded-md">
@@ -55,14 +67,12 @@ function Home() {
           </div>
           <div className="md:mt-8 my-4 flex gap-4">
             <Link href={"/terminal"}>
-              {/* <div className=" h-12 w-12"> */}
-                <AuroraButton
-                  variant="primary"
-                  className="text-black font-bold"
-                >
-                  Command Prompt
-                </AuroraButton>
-              {/* </div> */}
+              <AuroraButton
+                variant="primary"
+                className="text-black font-bold"
+              >
+                Command Prompt
+              </AuroraButton>
             </Link>
 
             <Link
@@ -71,14 +81,12 @@ function Home() {
               }
               target="_blank"
             >
-              {/* <div className="h-12 w-12"> */}
-                <AuroraButton
-                  variant="primary"
-                  className="text-black font-bold"
-                >
-                  Download Resume
-                </AuroraButton>
-              {/* </div> */}
+              <AuroraButton
+                variant="primary"
+                className="text-black font-bold"
+              >
+                Download Resume
+              </AuroraButton>
             </Link>
           </div>
         </div>
