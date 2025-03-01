@@ -10,16 +10,16 @@ function About() {
     <div className="md:mx-6 mx-4 mb-6">
       <div className=" w-full relative">
         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
-        <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
+        <div className="relative shadow-xl dark:bg-black bg-[#ededed]  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
           <div className="">
-            <h1 className="text-4xl text-white mb-4 relative z-50">
-              About{" "}
+            <h1 className="text-6xl text-center dark:text-white mb-4 relative z-50">
+              <span className="text-black dark:text-white">About</span>{" "}
               <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent font-bold">
                 Me
               </span>
             </h1>
             <div className="p-2 flex flex-col md:flex-row  rounded-lg my-4 gap-2 md:gap-0">
-              <div className="info flex-[4] p-2 text-white">
+              <div className="info flex-[4] p-2 dark:text-white text-black">
                 <TextGenerateEffect words={words} />
               </div>
               <div className="image flex-[1] p-2 flex items-center justify-center">
@@ -28,7 +28,7 @@ function About() {
                   width={200}
                   height={200}
                   alt=""
-                  className="rounded-full hover:scale-125 transition-all"
+                  className="rounded-full"
                 />
               </div>
             </div>
