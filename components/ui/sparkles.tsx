@@ -30,19 +30,46 @@ export const SparklesCore = (props: ParticlesProps) => {
     particleDensity,
   } = props;
   const [init, setInit] = useState(false);
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
   const controls = useAnimation();
+
+  useEffect(() => {
+    let isMounted = true;
+    
+    const initializeEngine = async () => {
+      try {
+        await initParticlesEngine(async (engine) => {
+          await loadSlim(engine);
+        });
+        
+        if (isMounted) {
+          setInit(true);
+          // Force a redraw by adding a small delay
+          setTimeout(() => {
+            controls.start({
+              opacity: 1,
+              transition: {
+                duration: 1,
+              },
+            });
+          }, 100);
+        }
+      } catch (error) {
+        console.error("Failed to initialize particles engine:", error);
+      }
+    };
+
+    initializeEngine();
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+    };
+  }, [controls]);
 
   const particlesLoaded = async (container?: Container) => {
     if (container) {
       console.log(container);
-      controls.start({
+      await controls.start({
         opacity: 1,
         transition: {
           duration: 1,
@@ -52,7 +79,11 @@ export const SparklesCore = (props: ParticlesProps) => {
   };
 
   return (
-    <motion.div animate={controls} className={cn("opacity-0", className)}>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={controls} 
+      className={cn("", className)}
+    >
       {init && (
         <Particles
           id={id || "tsparticles"}
