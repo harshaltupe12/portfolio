@@ -1,48 +1,88 @@
-import React from 'react'
+import Image from "next/image";
+import React from "react";
+import { Timeline } from "@/components/ui/timeline";
 
 function Education() {
-  return (
-    <div>
-        <h2 className="md:ml-8 ml-4 my-6 md:mb-10">
-          <span className="md:text-4xl text-3xl ml-2 md:ml-4 ">Higher {" "}</span> 
-          <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-4xl text-3xl font-bold">
-            Education
-          </span>
-        </h2>
-        <div className="flex md:flex-row flex-col gap-8 md:gap-24 justify-center items-center mt-4">
-            <div className="flex flex-col justify-center items-center md:flex-row w-[320px] md:w-[600px] rounded-lg border-2 p-4 gap-5 hover:scale-105 transition-all duration-500 hover:border hover:border-purple-300">
-                <div className="left flex-[1]">
-                    <img src="/mgm.png" className='rounded-sm' height={200} width={200} alt="" />
-                </div>
-                <div className="right flex-[2] flex flex-col gap-2">
-                <div className="font-bold">MGM College of Engineering & Technology </div>
-                    <div className=""><span className="font-bold">University : </span> University of Mumbai</div>
-                    <div className=""><span className="font-bold">Course : </span> BE in Computer Science</div>
-                    <div className=""><span className="font-bold">Start Date : </span> November 2022 </div>
-                    <div className=""><span className="font-bold">End Date : </span> May 2025</div>
-                    <div className=""><span className="font-bold">CGPA : </span> 8.13</div>
-                </div>
-            </div>
-
-            <div className="flex flex-col justify-center items-center md:flex-row w-[320px] md:w-[600px] rounded-lg border-2 p-4 gap-5 hover:scale-105 transition-all duration-500 hover:border hover:border-purple-300">
-                <div className="left flex-[1]">
-                    <img src="/msbte.jpeg" className='rounded-sm' height={200} width={200} alt="" />
-                </div>
-                <div className="right flex-[2] flex flex-col gap-2">
-                <div className="font-bold">Government Polytechnic Pen </div>
-                    <div className=""><span className="font-bold">University : </span> MSBTE</div>
-                    <div className=""><span className="font-bold">Course : </span> Diploma in Computer Technology</div>
-                    <div className=""><span className="font-bold">Start Date : </span> August 2018 </div>
-                    <div className=""><span className="font-bold">End Date : </span> May 2022</div>
-                    <div className=""><span className="font-bold">CGPA : </span> 83.89%</div>
-
-                </div>
-            </div>
-
+  const data = [
+    {
+      title: "B. E. Degree",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-lg md:text-xl font-bold">
+            MGM College of Engineering & Technology, Kamothe, Navi Mumbai.
+          </p>
+          <p className="text-sm md:text-lg">University of Mumbai, Nov 2022 - May 2025</p>
+          <p>BE in Computer Science</p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="/mgm.png"
+              alt="MGM College"
+              width={500}
+              height={500}
+              className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg dark:border md:p-4"
+            />
+            <Image
+              src="/MGM Certi.png"
+              alt="MGM Certificate"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg dark:border"
+            />
+          </div>
         </div>
-        
-    </div>
-  )
+      ),
+    },
+    {
+      title: "Diploma",
+      content: (
+        <div>
+          <p className="text-neutral-800 dark:text-neutral-200 text-lg md:text-xl font-bold">
+            Government Polytechnic Pen, Pen.
+          </p>
+          <p className="text-sm md:text-lg">MSBTE, Nov 2018 - May 2022</p>
+          <p>Diploma in Computer Technology</p>
+          <div className="grid grid-cols-2 gap-4">
+            <Image
+              src="/msbte.jpeg"
+              alt="MSBTE"
+              width={500}
+              height={500}
+              className="rounded-lg object-contain h-20 md:h-44 lg:h-60 w-full shadow-lg dark:border"
+            />
+            <Image
+              src="/0.1.jpg"
+              alt="Diploma Certificate"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-lg dark:border"
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+<div className="w-full">
+  {/* Title with lines */}
+  <div className="flex items-center justify-center my-6 md:mb-10 w-full">
+    <div className="hidden md:block flex-1 border-t border-gray-400"></div>
+    <h2 className="mx-4 text-4xl md:text-6xl font-bold text-center whitespace-nowrap flex-shrink-0">
+      <span className="ml-2 md:ml-4">Higher </span>
+      <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent">
+        Education
+      </span>
+    </h2>
+    <div className="hidden md:block flex-1 border-t border-gray-400"></div>
+  </div>
+
+  {/* Timeline Section */}
+  <div className="w-full">
+    <Timeline data={data} />
+  </div>
+</div>
+
+  );
 }
 
-export default Education
+export default Education;

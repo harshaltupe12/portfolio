@@ -1,23 +1,36 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { InfiniteMovingCards } from "../../components/ui/infinite-moving-cards";
+import React from "react";
 import { skillsData } from "@/utils/skills";
 import { skillsImage } from "@/utils/skill-image";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
-// bg-[#11152c]
+
 function Skills() {
   return (
     <div className="md:mx-8 mx-4">
-      <div id="skills" className="relative z-50 my-2 ">
-        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl  opacity-20"></div>
-        <h2 className="mb-4">
-          <span className="md:text-4xl text-3xl ml-2 md:ml-4">Technical {" "}</span> 
-          <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-4xl text-3xl font-bold">
-            Skills
-          </span>
-        </h2>
-        <div className="w-full my-1">
+      <div id="skills" className="relative z-50 my-2">
+        {/* Background Blur Effect */}
+        <div className="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+
+        {/* Heading with Lines */}
+        <div className="flex items-center justify-center my-6">
+          {/* Left Line - Only visible on md and larger */}
+          <div className="hidden sm:block flex-1 h-[1px] bg-gray-300"></div>
+
+          {/* Title */}
+          <h2 className="mx-4 text-center">
+            <span className="md:text-6xl text-4xl">Technical {" "}</span>
+            <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-6xl text-4xl font-bold">
+              Skills
+            </span>
+          </h2>
+
+          {/* Right Line - Only visible on md and larger */}
+          <div className="hidden sm:block flex-1 h-[1px] bg-gray-300"></div>
+        </div>
+
+        {/* Skills Marquee */}
+        <div className="w-full my-1 md:mt-16">
           <Marquee
             gradient={false}
             speed={80}
