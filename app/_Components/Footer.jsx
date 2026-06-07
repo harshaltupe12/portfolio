@@ -11,7 +11,7 @@ const LINKS = [
 function Footer() {
   return (
     <footer className="bg-cream" style={{ borderTop: "1px solid var(--ed-hair)" }}>
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="container-ed section-y">
         {/* CTA */}
         <h2
           className="text-ink font-sans m-0"

@@ -73,7 +73,7 @@ function Education() {
 
   return (
     <section className="bg-cream">
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 0 }}>
+      <div className="container-ed section-y" style={{ paddingBottom: 0 }}>
         <SectionHeading number="05" label="Education" title="Where I" accent="studied" />
       </div>
       <Timeline data={data} />

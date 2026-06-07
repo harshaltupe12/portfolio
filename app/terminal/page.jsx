@@ -1,174 +1,243 @@
 "use client";
-// import Link from "next/link";
-// import React, { useState, useEffect } from "react";
-
-// function Cmd() {
-//   const words = ["better", "cute", "beautiful", "modern"];
-
-//   const [input, setInput] = useState("");
-//   const [output, setOutput] = useState([]);
-
-//   const handleInput = (e) => {
-//     if (e.key === "Enter") {
-//       processCommand(input);
-//       setInput("");
-//     }
-//   };
-
-//   const processCommand = (command) => {
-//     let response = "";
-//     switch (command.toLowerCase()) {
-//       case "help":
-//         response =
-//           "Available commands: [help, about, skills, projects, contact]";
-//         break;
-//       case "about":
-//         {
-//           response =
-//             " Hello 👋 I'm Harshal Tupe An ambitious undergraduate Computer Engineer with a passion for software development & Web development.";
-//         }
-//         break;
-//       case "skills":
-//         response =
-//           "Skills: HTML, CSS, SASS, JavaScript, TypeScript, React, Node.js, Express, NextJS, MongoDB, PostgreSQL, UI/UX design, Git & Github, Neon DB, Firebase, Vercel.";
-//         break;
-//       case "projects":
-//         response =
-//           "Projects: [SaaS - Hyper Serve, Mock Master, ImaginaryINK, AICTE Portal]";
-//         break;
-//       case "contact":
-//         response =
-//           "[E-mail: harshaltupe12@gmail.com], [Contact No. +91 9370946170]";
-//         break;
-//       default:
-//         response = `Command not recognized: ${command}`;
-//     }
-//     setOutput([...output, { command, response }]);
-//   };
-//   return (
-//     <div className="bg-white md:p-8 p-3">
-//       <div className="bg-[#bcbcbc] w-full h-10 text-xl text-white flex gap-2 items-center justify-start pl-5 rounded-tl-xl rounded-tr-xl rounded-br-none rounded-bl-none">
-//         <div className="mini h-3 w-3 bg-yellow-400 rounded-full cursor-pointer hover:bg-yellow-500"></div>
-//         <div className="maxi h-3 w-3 bg-green-500 rounded-full cursor-pointer hover:bg-green-600"></div>
-//         <Link href={"/"}>
-//           <div className="close h-3 w-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-600"></div>
-//         </Link>
-//         | <span className="text-[15px]">Harshal.zsh</span>
-//       </div>
-//       <div className="bg-[#ebeaea] text-[#333333] md:h-[600px] h-[700px] p-5 font-mono rounded-tl-none rounded-tr-none rounded-br-xl rounded-bl-xl">
-//         <div className="">
-//           {/* <FlipWords words={words} /> <br /> */}
-//           If you're a terminal geek 💻, you'll go nuts for this 🤯!!
-//           <br />
-//           Discover who I am quickly through a sleek terminal interface.
-//           <br />
-//           <br />
-//           This is my custom command prompt! — Type{" "}
-//           <span className="text-green-500">help</span> for seeing the list of
-//           supported commands.
-//         </div>
-//         <div className="mt-5">
-//           {output.map((item, index) => (
-//             <div key={index}>
-//               <p className="text-green-500">{`> ${item.command}`}</p>
-//               <p>{item.response}</p>
-//             </div>
-//           ))}
-//         </div>
-//         <div className="flex gap-2">
-//           {">"}
-//           <input
-//             type="text"
-//             value={input}
-//             onChange={(e) => setInput(e.target.value)}
-//             onKeyDown={handleInput}
-//             className="bg-[#ebeaea] text-[333333] outline-none w-full"
-//             placeholder="Type a command..."
-//             autoFocus
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Cmd;
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+// cream/ink tokens for the dark "paper terminal"
+const CREAM = "var(--ed-bg)";
+const CREAM_SOFT = "rgba(245,241,234,0.62)";
+const RUST = "#d8694a"; // lighter terracotta for contrast on ink bg
+const RESUME_URL =
+  "https://drive.google.com/file/d/1619GUOv6KQ0syMXMfWNjCa256k0-fQab/view?usp=sharing";
+
+const COMMANDS = {
+  help: "Available commands:  about · skills · projects · experience · contact · socials · resume · clear",
+  about:
+    "Harshal Tupe — Computer Engineer and web developer. I build fast, accessible interfaces with React, Next.js and Node.js, from REST APIs to clean front ends.",
+  skills:
+    "HTML · CSS · SASS · JavaScript · TypeScript · React · Next.js · Node.js · Express · MongoDB · PostgreSQL · Neon · Firebase · Git · Vercel · UI/UX",
+  projects:
+    "Hyper Serve (SaaS, 18+ services) · Mock Master (AI mock interviews) · Imaginary-INK (prompt → image) · AICTE Portal",
+  experience:
+    "3+ years building web apps · 20+ projects shipped · focus on product UX + fullstack delivery.",
+  contact: "Email: harshaltupe12@gmail.com    Phone: +91 93709 46170",
+  socials:
+    "GitHub: github.com/harshaltupe12    LinkedIn: linkedin.com/in/harshal-tupe    Instagram: @harshal.tupe_",
+  resume: "Opening resume in a new tab…",
+};
+
+const CHIPS = ["help", "about", "skills", "projects", "contact", "clear"];
+
+const WELCOME = [
+  "harshal.zsh — interactive portfolio shell",
+  "Type a command, or tap a chip below. Try `help` to begin.",
+];
 
 function Cmd() {
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState([]);
+  const [history, setHistory] = useState([]); // {command, response}
+  const [cmdLog, setCmdLog] = useState([]); // raw commands for ↑/↓
+  const [cursor, setCursor] = useState(-1);
+  const inputRef = useRef(null);
+  const bodyRef = useRef(null);
 
-  const handleInput = (e) => {
-    if (e.key === "Enter") {
-      processCommand(input.trim());
-      setInput(""); // Clear input after processing
+  // auto-scroll to newest line
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+  }, [history]);
+
+  const run = (raw) => {
+    const command = raw.trim();
+    if (!command) return;
+    if (command.toLowerCase() === "clear") {
+      setHistory([]);
+      setCmdLog((l) => [...l, command]);
+      return;
+    }
+    const response =
+      COMMANDS[command.toLowerCase()] ||
+      `command not found: ${command} — type 'help' for the list`;
+    setHistory((h) => [...h, { command, response }]);
+    setCmdLog((l) => [...l, command]);
+    if (command.toLowerCase() === "resume") {
+      window.open(RESUME_URL, "_blank", "noopener");
     }
   };
 
-  const processCommand = (command) => {
-    const commands = {
-      help: "Available commands: [help, about, skills, projects, contact]",
-      about:
-        "Hello 👋 I'm Harshal Tupe An ambitious undergraduate Computer Engineer with a passion for software development & Web development.",
-      skills:
-        "Skills: HTML, CSS, SASS, JavaScript, TypeScript, React, Node.js, Express, NextJS, MongoDB, PostgreSQL, UI/UX design, Git & Github, Neon DB, Firebase, Vercel.",
-      projects:
-        "Projects: [SaaS - Hyper Serve, Mock Master, ImaginaryINK, AICTE Portal]",
-      contact:
-        "[E-mail: harshaltupe12@gmail.com], [Contact No. +91 9370946170]",
-    };
-
-    const response =
-      commands[command.toLowerCase()] || `Command not recognized: ${command}`;
-    setOutput((prevOutput) => [...prevOutput, { command, response }]);
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      run(input);
+      setInput("");
+      setCursor(-1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (!cmdLog.length) return;
+      const next = cursor < 0 ? cmdLog.length - 1 : Math.max(0, cursor - 1);
+      setCursor(next);
+      setInput(cmdLog[next]);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (cursor < 0) return;
+      const next = cursor + 1;
+      if (next >= cmdLog.length) {
+        setCursor(-1);
+        setInput("");
+      } else {
+        setCursor(next);
+        setInput(cmdLog[next]);
+      }
+    }
   };
 
+  const focusInput = () => inputRef.current?.focus();
+
   return (
-    <div className="bg-white dark:bg-black md:p-8 p-4 ">
-      <div className="bg-[#bcbcbc] dark:bg-black w-full h-10 text-xl dark:border border-slate-800 text-white flex gap-2 items-center justify-start pl-5 rounded-tl-xl rounded-tr-xl">
-        <div className="mini h-3 w-3 bg-yellow-400 rounded-full"></div>
-        <div className="maxi h-3 w-3 bg-green-500 rounded-full"></div>
-        <Link href={"/"}>
-          <div className="close h-3 w-3 bg-red-500 rounded-full"></div>
+    <section className="bg-cream">
+      <div className="container-ed" style={{ paddingTop: 56, paddingBottom: 64 }}>
+        {/* Back + eyebrow */}
+        <Link
+          href="/"
+          className="press inline-flex items-center gap-2 eyebrow text-soft hover:text-rust"
+          style={{ marginBottom: 20 }}
+        >
+          <ArrowLeft size={14} strokeWidth={1.75} /> Back home
         </Link>
-        | <span className="text-[15px]">Harshal.zsh</span>
-      </div>
-      <div className="bg-[#ebeaea] dark:border border-slate-800 dark:bg-black dark:text-slate-200 text-[#333333] md:h-[600px] h-[700px] p-5 font-mono rounded-bl-xl rounded-br-xl">
-      <div className="">
-          If you're a terminal geek 💻, you'll go nuts for this 🤯!!
-          <br />
-          Discover who I am quickly through a sleek terminal interface.
-          <br />
-          <br />
-          This is my custom command prompt! — Type{" "}
-          <span className="text-green-500">help</span> for seeing the list of
-          supported commands.
-        </div>
-        <div className="mt-5">
-          {output.map((item, index) => (
-            <div key={index}>
-              <p className="text-green-500">{`> ${item.command}`}</p>
-              <p>{item.response}</p>
+
+        {/* Terminal window */}
+        <div
+          className="mx-auto"
+          style={{
+            maxWidth: 860,
+            border: "1px solid var(--ed-hair-2)",
+            boxShadow: "10px 12px 0 var(--ed-hair-2)",
+          }}
+        >
+          {/* Title bar */}
+          <div
+            className="flex items-center gap-3"
+            style={{
+              height: 44,
+              padding: "0 16px",
+              backgroundColor: "var(--ed-fg)",
+              borderBottom: "1px solid rgba(245,241,234,0.14)",
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <Link href="/" aria-label="Close terminal, back home">
+                <span style={dot("#c9533a")} className="press" />
+              </Link>
+              <span style={dot("rgba(245,241,234,0.34)")} />
+              <span style={dot("rgba(245,241,234,0.34)")} />
             </div>
+            <span
+              className="font-mono"
+              style={{ color: CREAM_SOFT, fontSize: 12, letterSpacing: "0.04em", marginLeft: 4 }}
+            >
+              harshal — zsh
+            </span>
+          </div>
+
+          {/* Body */}
+          <div
+            ref={bodyRef}
+            onClick={focusInput}
+            className="term-body font-mono"
+            style={{
+              backgroundColor: "var(--ed-fg)",
+              color: CREAM,
+              padding: 20,
+              height: "min(60vh, 520px)",
+              overflowY: "auto",
+              fontSize: 14,
+              lineHeight: 1.7,
+              cursor: "text",
+            }}
+          >
+            {/* Welcome */}
+            {WELCOME.map((line, i) => (
+              <p key={i} style={{ color: i === 0 ? CREAM : CREAM_SOFT, margin: 0 }}>
+                {line}
+              </p>
+            ))}
+
+            {/* History */}
+            {history.map((item, i) => (
+              <div key={i} style={{ marginTop: 14 }}>
+                <p style={{ margin: 0 }}>
+                  <span style={{ color: RUST }}>❯</span>{" "}
+                  <span style={{ color: CREAM }}>{item.command}</span>
+                </p>
+                <p style={{ margin: "2px 0 0", color: CREAM_SOFT, whiteSpace: "pre-wrap" }}>
+                  {item.response}
+                </p>
+              </div>
+            ))}
+
+            {/* Live prompt */}
+            <div className="flex items-center" style={{ marginTop: 14, gap: 8 }}>
+              <span style={{ color: RUST }}>❯</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={onKeyDown}
+                autoFocus
+                spellCheck={false}
+                autoComplete="off"
+                aria-label="Terminal command input"
+                className="term-input font-mono"
+                placeholder="type a command…"
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: CREAM,
+                  fontSize: 14,
+                  minHeight: 24,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Command chips — discoverable, tappable */}
+        <div className="flex flex-wrap gap-2" style={{ marginTop: 20, maxWidth: 860, marginInline: "auto" }}>
+          {CHIPS.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => {
+                run(c);
+                focusInput();
+              }}
+              className="press font-mono text-soft hover:text-rust hover:border-rust"
+              style={{
+                fontSize: 12,
+                letterSpacing: "0.04em",
+                padding: "9px 14px",
+                minHeight: 40,
+                border: "1px solid var(--ed-hair-2)",
+                backgroundColor: "var(--ed-bg-2)",
+              }}
+            >
+              {c}
+            </button>
           ))}
         </div>
-        <div className="flex gap-2">
-          {">"}
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleInput}
-            className="bg-[#ebeaea] dark:bg-black text-[#333333] dark:text-white outline-none w-full"
-            placeholder="Type a command..."
-          />
-        </div>
       </div>
-    </div>
+    </section>
   );
 }
+
+const dot = (bg) => ({
+  display: "block",
+  width: 11,
+  height: 11,
+  borderRadius: 999,
+  backgroundColor: bg,
+  cursor: bg === "#c9533a" ? "pointer" : "default",
+});
 
 export default Cmd;

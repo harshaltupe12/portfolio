@@ -9,7 +9,7 @@ import SectionHeading from "../_Components/SectionHeading";
 function Skills() {
   return (
     <section className="bg-cream" id="skills">
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="container-ed section-y" style={{ paddingBottom: 32 }}>
         <SectionHeading number="03" label="Skills" title="Tools I" accent="work with" />
       </div>
 

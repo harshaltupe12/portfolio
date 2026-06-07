@@ -4,17 +4,6 @@ import { Github, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import SectionHeading from "../_Components/SectionHeading";
 
-const inputStyle = {
-  width: "100%",
-  padding: "12px 14px",
-  marginTop: 8,
-  backgroundColor: "var(--ed-bg)",
-  border: "1px solid var(--ed-hair-2)",
-  color: "var(--ed-fg)",
-  fontSize: 15,
-  outline: "none",
-};
-
 const labelStyle = {
   fontFamily: "var(--mono)",
   fontSize: 11,
@@ -34,7 +23,7 @@ const SOCIALS = [
 function Contact() {
   return (
     <section className="bg-cream" id="contact">
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="container-ed section-y">
         <SectionHeading number="06" label="Contact" title="Let's" accent="talk" />
 
         <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-start">
@@ -49,22 +38,22 @@ function Contact() {
 
               <div style={{ marginBottom: 20 }}>
                 <label htmlFor="c-name" style={labelStyle}>Your name</label>
-                <input id="c-name" type="text" name="Name" autoComplete="name" required placeholder="John Doe" style={inputStyle} />
+                <input id="c-name" type="text" name="Name" autoComplete="name" required placeholder="John Doe" className="ed-input" />
               </div>
 
               <div style={{ marginBottom: 20 }}>
                 <label htmlFor="c-email" style={labelStyle}>Your email</label>
-                <input id="c-email" type="email" name="Email" autoComplete="email" required placeholder="john@example.com" style={inputStyle} />
+                <input id="c-email" type="email" name="Email" autoComplete="email" required placeholder="john@example.com" className="ed-input" />
               </div>
 
               <div style={{ marginBottom: 24 }}>
                 <label htmlFor="c-msg" style={labelStyle}>Message</label>
-                <textarea id="c-msg" name="Message" required rows={4} placeholder="Tell me about it…" style={{ ...inputStyle, resize: "vertical" }} />
+                <textarea id="c-msg" name="Message" required rows={4} placeholder="Tell me about it…" className="ed-input" style={{ resize: "vertical" }} />
               </div>
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center bg-rust font-medium transition-transform duration-200 ease-out hover:scale-[1.02]"
+                className="press inline-flex items-center justify-center bg-rust font-medium hover:scale-[1.02]"
                 style={{ color: "var(--ed-bg)", padding: "14px 22px", fontSize: 15, width: "100%" }}
               >
                 Send message&nbsp;→

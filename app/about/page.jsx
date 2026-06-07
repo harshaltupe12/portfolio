@@ -6,7 +6,7 @@ import SectionHeading from "../_Components/SectionHeading";
 function About() {
   return (
     <section className="bg-cream">
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="container-ed section-y">
         <SectionHeading number="02" label="About" title="A bit about" accent="me" />
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-10 md:gap-16 items-start">
@@ -31,7 +31,7 @@ function About() {
             </p>
           </div>
 
-          <div className="md:justify-self-end">
+          <div className="md:justify-self-end w-full" style={{ maxWidth: 320 }}>
             <Image
               src="/main.jpg"
               width={320}

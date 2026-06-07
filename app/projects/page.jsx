@@ -37,7 +37,7 @@ function Projects() {
 
   return (
     <section className="bg-cream">
-      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+      <div className="container-ed section-y">
         <SectionHeading
           number="04"
           label="Work"
@@ -47,15 +47,14 @@ function Projects() {
           hrefLabel="All on GitHub"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--ed-hair)", border: "1px solid var(--ed-hair)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t md:border md:gap-px md:bg-[var(--ed-hair)] border-[var(--ed-hair)]">
           {data.map((info) => (
             <Link
               key={info.projectName}
               href={info.projectUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-cream block no-underline transition-colors duration-200 ease-out"
-              style={{ padding: 24 }}
+              className="group press-card bg-cream block no-underline py-6 md:p-6 border-b last:border-b-0 md:border-b-0 border-[var(--ed-hair)]"
             >
               {/* Image */}
               <div
@@ -65,7 +64,8 @@ function Projects() {
                 <img
                   src={info.projectImg}
                   alt={info.projectName}
-                  className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="object-cover w-full h-full group-hover:scale-[1.03]"
+                  style={{ transition: "transform 500ms var(--ease-out)" }}
                 />
               </div>
 
