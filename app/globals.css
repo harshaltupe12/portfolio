@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   Editorial design system — ref: CLAUDE.md (aanandmadhav.com)
+   Warm cream paper + terracotta accent, serif display, hairlines.
+   ============================================================ */
 :root {
   --foreground-rgb: 0, 0, 0;
+
+  /* Editorial palette — prefixed --ed-* to avoid shadcn token collisions */
+  --ed-bg: #f5f1ea;        /* warm cream paper */
+  --ed-bg-2: #efeae0;      /* darker cream — panels/code */
+  --ed-fg: #1a1816;        /* warm ink brown */
+  --ed-muted: #6b635a;     /* secondary text */
+  --ed-muted-2: #8b8278;   /* tertiary / captions */
+  --ed-hair: #e1dacb;      /* hairline divider */
+  --ed-hair-2: #d6cebd;    /* stronger hairline / hover */
+  --ed-accent: #b8502e;    /* terracotta — the one brand color */
+  --ed-accent-ink: #7a3318;/* darker accent for hover text */
+
+  /* Font stacks (vars set by next/font in layout) */
+  --sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --serif: var(--font-instrument-serif), "Instrument Serif", "Times New Roman", serif;
+  --mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: white) {
@@ -14,14 +36,71 @@
   }
 }
 
-body {
-    /* padding: 20px; */
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Editorial helpers — unique names to avoid Tailwind/shadcn collisions */
+  .font-sans  { font-family: var(--sans); }
+  .font-serif { font-family: var(--serif); }
+  .font-mono  { font-family: var(--mono); }
+
+  .text-ink   { color: var(--ed-fg); }
+  .text-soft  { color: var(--ed-muted); }
+  .text-faint { color: var(--ed-muted-2); }
+  .text-rust  { color: var(--ed-accent); }
+  .text-rust-ink { color: var(--ed-accent-ink); }
+
+  .bg-cream   { background-color: var(--ed-bg); }
+  .bg-cream-2 { background-color: var(--ed-bg-2); }
+  .bg-rust    { background-color: var(--ed-accent); }
+
+  .border-hair   { border-color: var(--ed-hair); }
+  .border-hair-2 { border-color: var(--ed-hair-2); }
+  .border-rust   { border-color: var(--ed-accent); }
+
+  /* Section label: mono uppercase wide-tracked */
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ed-muted-2);
+  }
+
+  /* Editorial container — max 1360px, responsive gutters */
+  .container-ed {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+}
+
+/* Hairline rule between sections */
+.hair-rule {
+  border: 0;
+  border-top: 1px solid var(--ed-hair);
+  margin: 0;
+}
+::selection { background: var(--ed-accent); color: var(--ed-bg); }
+
+/* Entrance + ambient keyframes (ref CLAUDE.md §7) */
+@keyframes ed-fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes ed-ping { 0% { opacity: .6; transform: scale(1); } 80%, 100% { opacity: 0; transform: scale(2.2); } }
+@keyframes ed-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+.fu  { animation: ed-fadeUp .7s both; }
+.fu2 { animation: ed-fadeUp .7s .15s both; }
+.fu3 { animation: ed-fadeUp .7s .3s both; }
+.ed-float { animation: ed-float 4.8s ease-in-out infinite; }
+
+@media (max-width: 1024px) { .container-ed { padding: 0 32px; } }
+@media (max-width: 768px)  { .container-ed { padding: 0 20px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fu, .fu2, .fu3, .ed-float { animation: none; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
 }
 
 @layer base {

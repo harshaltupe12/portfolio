@@ -1,105 +1,101 @@
 "use client";
 import React from "react";
-import { Github, Instagram, Linkedin, Mails, PhoneCall } from "lucide-react";
+import { Github, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import Link from "next/link";
+import SectionHeading from "../_Components/SectionHeading";
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px 14px",
+  marginTop: 8,
+  backgroundColor: "var(--ed-bg)",
+  border: "1px solid var(--ed-hair-2)",
+  color: "var(--ed-fg)",
+  fontSize: 15,
+  outline: "none",
+};
+
+const labelStyle = {
+  fontFamily: "var(--mono)",
+  fontSize: 11,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  color: "var(--ed-muted-2)",
+};
+
+const SOCIALS = [
+  { Icon: Phone, label: "+91 93709 46170", href: "tel:+919370946170" },
+  { Icon: Mail, label: "harshaltupe12@gmail.com", href: "mailto:harshaltupe12@gmail.com" },
+  { Icon: Linkedin, label: "linkedin.com/in/harshal-tupe", href: "https://www.linkedin.com/in/harshal-tupe/" },
+  { Icon: Github, label: "github.com/harshaltupe12", href: "https://github.com/harshaltupe12" },
+  { Icon: Instagram, label: "instagram.com/harshal.tupe_", href: "https://www.instagram.com/harshal.tupe_/" },
+];
 
 function Contact() {
   return (
-    <div>
-      {/* Title Section with Centered Text & Horizontal Lines */}
-      <div className="flex items-center justify-center my-6 md:mb-10 w-full">
-        <div className="hidden md:block flex-1 border-t border-gray-400"></div>
-        <h2 className="mx-4 text-4xl md:text-6xl font-bold text-center whitespace-nowrap flex-shrink-0">
-          <span className="ml-2 md:ml-4">Get in </span>
-          <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent">
-            Touch
-          </span>
-        </h2>
-        <div className="hidden md:block flex-1 border-t border-gray-400"></div>
-      </div>
+    <section className="bg-cream" id="contact">
+      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+        <SectionHeading number="06" label="Contact" title="Let's" accent="talk" />
 
-      <div className="card flex md:flex-row flex-col w-full">
-        <div className="left flex-1 p-4" style={{ height: "max-content" }}>
-          <div className="form p-4 border-2 rounded-lg h-ful">
-            <p>
-              Do not hesitate to get in touch with me if you have any queries or
-              worries. I'm up for any job opportunity that fits my interests and
-              skill set.
+        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-start">
+          {/* Form */}
+          <div>
+            <p className="text-soft m-0" style={{ fontSize: 17, lineHeight: 1.6, maxWidth: 520, marginBottom: 28 }}>
+              Have a query, an idea, or a role that fits my skill set? Drop a line —
+              I'm happy to talk.
             </p>
-            <form action="https://api.web3forms.com/submit" method="POST" className="mt-4">
+            <form action="https://api.web3forms.com/submit" method="POST">
               <input type="hidden" name="access_key" value="78663257-eaa2-4b38-a16b-d038fd43a807" />
-              <label>Your Name</label>
-              <input
-                type="text"
-                name="Name"
-                required
-                placeholder="John Doe"
-                className="w-full p-2 mb-4 border rounded-md dark:bg-black"
-              />
 
-              <label>Your Email</label>
-              <input
-                type="email"
-                name="Email"
-                required
-                placeholder="johndoe@gmail.com"
-                className="w-full p-2 mb-4 border rounded-md dark:bg-black"
-              />
+              <div style={{ marginBottom: 20 }}>
+                <label htmlFor="c-name" style={labelStyle}>Your name</label>
+                <input id="c-name" type="text" name="Name" autoComplete="name" required placeholder="John Doe" style={inputStyle} />
+              </div>
 
-              <label>Your Message</label>
-              <textarea
-                name="Message"
-                required
-                placeholder="Message here"
-                rows="1"
-                className="w-full p-2 mb-4 border rounded-md dark:bg-black"
-              />
+              <div style={{ marginBottom: 20 }}>
+                <label htmlFor="c-email" style={labelStyle}>Your email</label>
+                <input id="c-email" type="email" name="Email" autoComplete="email" required placeholder="john@example.com" style={inputStyle} />
+              </div>
+
+              <div style={{ marginBottom: 24 }}>
+                <label htmlFor="c-msg" style={labelStyle}>Message</label>
+                <textarea id="c-msg" name="Message" required rows={4} placeholder="Tell me about it…" style={{ ...inputStyle, resize: "vertical" }} />
+              </div>
+
               <button
                 type="submit"
-                className="p-2 bg-blue-500 rounded-lg text-white w-full hover:bg-blue-400 transition-all duration-500"
+                className="inline-flex items-center justify-center bg-rust font-medium transition-transform duration-200 ease-out hover:scale-[1.02]"
+                style={{ color: "var(--ed-bg)", padding: "14px 22px", fontSize: 15, width: "100%" }}
               >
-                Send Message
+                Send message&nbsp;→
               </button>
             </form>
           </div>
-        </div>
-        <div className="right flex-1 h-96 p-4 border-2 rounded-lg my-4 flex flex-col justify-center mx-4 md:mx-0 mr-4 md:mr-4">
-          <div className="header">
-            Additional Information and Social Media Handles
-          </div>
-          <div className="content flex flex-col gap-5 mt-5">
-            <div className="call text-gray-600 flex gap-2">
-              <PhoneCall />
-              +91 9370946170
-            </div>
-            <div className="gmail text-gray-600 flex gap-2">
-              <Mails />
-              <Link href="mailto:harshaltupe12@gmail.com" target="_blank">
-                harshaltupe12@gmail.com
-              </Link>
-            </div>
-            <div className="linkedin text-gray-600 flex gap-2">
-              <Linkedin />
-              <Link href="https://www.linkedin.com/in/harshal-tupe/" target="_blank">
-                Linkedin/harshal-tupe
-              </Link>
-            </div>
-            <div className="github text-gray-600 flex gap-2">
-              <Github />
-              <Link href="https://github.com/harshaltupe12" target="_blank">
-                Github/harshaltupe12
-              </Link>
-            </div>
-            <div className="instagram text-gray-600 flex gap-2">
-              <Instagram />
-              <Link href="https://www.instagram.com/harshal.tupe_/" target="_blank">
-                Instagram/harshal.tupe_
-              </Link>
+
+          {/* Info */}
+          <div className="md:border-l" style={{ borderColor: "var(--ed-hair)" }}>
+            <div className="md:pl-12">
+              <p className="eyebrow" style={{ marginBottom: 20 }}>Elsewhere</p>
+              <div className="flex flex-col" style={{ gap: 4 }}>
+                {SOCIALS.map(({ Icon, label, href }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-soft transition-colors duration-150 ease-out hover:text-rust"
+                    style={{ padding: "10px 0", fontSize: 15 }}
+                  >
+                    <Icon size={18} strokeWidth={1.5} className="shrink-0" />
+                    <span>{label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

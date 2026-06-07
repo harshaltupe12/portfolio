@@ -1,36 +1,62 @@
 import React from "react";
-import Navbar from "./Navbar";
 import Link from "next/link";
-import { ModeToggle } from "../_Components/DarkMode";
+
+const LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/harshal-tupe/" },
+  { label: "GitHub", href: "https://github.com/harshaltupe12" },
+  { label: "Instagram", href: "https://www.instagram.com/harshal.tupe_/" },
+  { label: "Email", href: "mailto:harshaltupe12@gmail.com" },
+];
 
 function Footer() {
-  // #111827
   return (
-    <>
-      <div>
-        <div className="flex flex-col gap-2 justify-center items-center p-4 bg-[#111827]">
-          <Link href={"https://www.linkedin.com/in/harshal-tupe/"}>
-            <h2 className="text-white hover:scale-105 transition-all duration-700">
-              Created with ❤️ By
-              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-blue-300 to-blue-600 text-transparent font-bold ">
-                {" "}
-                Harshal Tupe
-              </span>
-            </h2>
-          </Link>
-          <Link href="https://www.hitwebcounter.com" target="_blank">
-            <img
-              src="https://hitwebcounter.com/counter/counter.php?page=17109546&style=0006&nbdigits=8&type=page&initCount=980"
-              title="Counter Widget"
-              alt="Visit counter For Websites"
-              border="0"
-            />
-          </Link>
-          <ModeToggle />
-          <p className="text-white text-sm">Deem the light boost the vibe</p>
+    <footer className="bg-cream" style={{ borderTop: "1px solid var(--ed-hair)" }}>
+      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+        {/* CTA */}
+        <h2
+          className="text-ink font-sans m-0"
+          style={{ fontSize: "clamp(36px, 6vw, 72px)", lineHeight: 1, letterSpacing: "-0.035em", fontWeight: 600, maxWidth: 900 }}
+        >
+          Let's build{" "}
+          <span className="font-serif italic text-rust" style={{ fontWeight: 400 }}>
+            something
+          </span>
+          .
+        </h2>
+
+        <Link
+          href="/contact"
+          className="inline-flex items-center text-ink transition-colors duration-150 ease-out hover:text-rust"
+          style={{ marginTop: 24, fontSize: 18, borderBottom: "1px solid var(--ed-hair-2)", paddingBottom: 4 }}
+        >
+          Get in touch&nbsp;→
+        </Link>
+
+        {/* Links row */}
+        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ marginTop: 56 }}>
+          {LINKS.map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              target={l.href.startsWith("http") ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className="eyebrow text-soft transition-colors duration-150 ease-out hover:text-rust"
+              style={{ padding: "6px 0" }}
+            >
+              {l.label} ↗
+            </Link>
+          ))}
+        </div>
+
+        <hr className="hair-rule" style={{ marginTop: 32, marginBottom: 24 }} />
+
+        {/* Bottom row */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="eyebrow m-0">© 2026 Harshal Tupe</p>
+          <p className="eyebrow m-0">Built in Pune · React · Next.js</p>
         </div>
       </div>
-    </>
+    </footer>
   );
 }
 

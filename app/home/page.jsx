@@ -1,97 +1,107 @@
 "use client";
 import React from "react";
-import { SparklesCore } from "../../components/ui/sparkles";
-import { ArrowRight } from "lucide-react";
-import { FlipWords } from "../../components/ui/flip-words";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { AuroraText } from "@/components/magicui/aurora-text";
-import { AuroraButton } from "@/components/magicui/aura-button";
+
+const STATS = [
+  { value: "3+", label: "Years Building" },
+  { value: "20+", label: "Projects Shipped" },
+  { value: "REST", label: "APIs & Fullstack" },
+];
+
+const RESUME =
+  "https://drive.google.com/file/d/1619GUOv6KQ0syMXMfWNjCa256k0-fQab/view?usp=sharing";
 
 function Home() {
-  const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const [particleColor, setParticleColor] = useState("#fff"); // Default to white
-  const words = ["Software-Developer", "Fullstack-Developer", "REST-API"];
-  
-  // Handle client-side mounting
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  // Update particle color when theme changes
-  useEffect(() => {
-    if (mounted) {
-      const currentTheme = resolvedTheme || theme;
-      setParticleColor(currentTheme === "dark" ? "#fff" : "#000");
-    }
-  }, [theme, resolvedTheme, mounted]);
-
   return (
-    <>
-      <div className="h-screen md:h-screen relative w-full dark:bg-black bg-[#fff] flex flex-col items-center md:justify-center justify-center overflow-hidden rounded-md">
-        <div className="w-full absolute inset-0 h-screen">
-          <SparklesCore
-            id="tsparticlesfullpage"
-            background="transparent"
-            minSize={1}
-            maxSize={1.4}
-            particleDensity={100}
-            className="w-full h-full"
-            particleColor={particleColor}
-          />
-        </div>
-        <div className="flex justify-center flex-col items-center z-10 mt-10 md:mt-0 md:mb-0 mb-[70px]">
-          <Link href={"https://github.com/harshaltupe12"} target="_blank">
-            <div className="bg-gradient-to-tl from-blue-400 via-blue-100 to-blue-400 w-[max-content] p-2 rounded-lg flex gap-1 font-bold text-gray-700 cursor-pointer hover:scale-105 transition-all">
-              Do check GitHub <ArrowRight />
-            </div>
-          </Link>
-          <h2 className=" my-2 text-[40px] md:text-[60px] lg:text-[70px] font-bold dark:text-slate-100 text-gray-900 flex flex-col lg:flex-row md:flex-col md:gap-2 gap-0 items-center">
-            Hello, This is {""}
-            <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-[70px] text-[50px]">
-              {" "}
-              <AuroraText>Harshal Tupe</AuroraText>
-            </span>
-          </h2>
-          <div className="flex justify-center items-center px-4">
-            <div className="text-2xl my-0 md:text-4xl mx-auto font-normal text-black">
-              <FlipWords
-                words={words}
-                className="dark:text-slate-200"
-                style={{ color: "black" }}
-              />{" "}
-              <br />
-            </div>
-          </div>
-          <div className="md:mt-8 my-4 flex gap-4">
-            <Link href={"/terminal"}>
-              <AuroraButton
-                variant="primary"
-                className="text-black font-bold"
-              >
-                Command Prompt
-              </AuroraButton>
-            </Link>
+    <section className="bg-cream" style={{ minHeight: "calc(100dvh - 64px)" }}>
+      <div className="container-ed flex flex-col justify-center" style={{ minHeight: "calc(100dvh - 64px)", paddingTop: 48, paddingBottom: 64 }}>
+        {/* Eyebrow */}
+        <p className="eyebrow fu" style={{ marginBottom: 24 }}>
+          Pune, India · Available for work
+        </p>
 
-            <Link
-              href={
-                "https://drive.google.com/file/d/1619GUOv6KQ0syMXMfWNjCa256k0-fQab/view?usp=sharing"
-              }
-              target="_blank"
-            >
-              <AuroraButton
-                variant="primary"
-                className="text-black font-bold"
+        {/* Headline */}
+        <h1
+          className="fu text-ink font-sans"
+          style={{
+            fontSize: "clamp(48px, 8.6vw, 112px)",
+            lineHeight: 0.96,
+            letterSpacing: "-0.04em",
+            fontWeight: 600,
+            margin: 0,
+            maxWidth: 1100,
+          }}
+        >
+          Harshal Tupe.
+          <br />
+          <span className="font-serif italic text-rust" style={{ fontWeight: 400, letterSpacing: "-0.02em" }}>
+            Builder
+          </span>{" "}
+          of the web.
+        </h1>
+
+        {/* Subhead */}
+        <p
+          className="fu2 text-soft"
+          style={{
+            marginTop: 28,
+            maxWidth: 620,
+            fontSize: "clamp(16px, 1.7vw, 19px)",
+            lineHeight: 1.6,
+          }}
+        >
+          Web developer and software engineer crafting fast, accessible
+          interfaces with React, Next.js, and modern tooling — from REST APIs to
+          pixel-clean front ends.
+        </p>
+
+        {/* CTAs */}
+        <div className="fu2 flex flex-wrap items-center gap-4" style={{ marginTop: 36 }}>
+          <Link
+            href="/contact"
+            className="inline-flex items-center bg-rust text-[15px] font-medium px-5 py-3 transition-transform duration-200 ease-out hover:scale-[1.02]"
+            style={{ color: "var(--ed-bg)" }}
+          >
+            Get in touch&nbsp;→
+          </Link>
+          <Link
+            href="/terminal"
+            className="inline-flex items-center text-ink text-[15px] font-medium border border-hair-2 px-5 py-3 transition-colors duration-200 ease-out hover:border-rust hover:text-rust"
+          >
+            Command Prompt
+          </Link>
+          <Link
+            href={RESUME}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-soft text-[15px] font-medium transition-colors duration-150 ease-out hover:text-rust"
+            style={{ borderBottom: "1px solid var(--ed-hair-2)", paddingBottom: 2 }}
+          >
+            Download Resume&nbsp;↗
+          </Link>
+        </div>
+
+        {/* Stats row */}
+        <div
+          className="fu3 flex flex-wrap"
+          style={{ marginTop: 64, gap: 48, borderTop: "1px solid var(--ed-hair)", paddingTop: 28 }}
+        >
+          {STATS.map((s) => (
+            <div key={s.label} className="flex flex-col" style={{ minWidth: 120 }}>
+              <span
+                className="font-serif text-ink"
+                style={{ fontSize: "clamp(32px, 4vw, 44px)", lineHeight: 1, letterSpacing: "-0.02em" }}
               >
-                Download Resume
-              </AuroraButton>
-            </Link>
-          </div>
+                {s.value}
+              </span>
+              <span className="eyebrow" style={{ marginTop: 8 }}>
+                {s.label}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

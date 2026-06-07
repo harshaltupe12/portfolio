@@ -1,77 +1,92 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import SectionHeading from "../_Components/SectionHeading";
 
 function Projects() {
   const data = [
     {
-      projectName: "SaaS - Hyper Serve",
-      projectDesc:
-        "Is a Software as a Service platform, offers more than 18+ services",
+      projectName: "Hyper Serve",
+      projectDesc: "A Software-as-a-Service platform offering 18+ services.",
       projectImg: "/hyper.png",
       projectUrl: "https://github.com/harshaltupe12/hyper-serve",
+      tag: "SaaS",
     },
     {
       projectName: "Mock Master",
-      projectDesc:
-        "Mock Master to deliver real-time feedback for mock interviews",
+      projectDesc: "Real-time feedback engine for mock interviews.",
       projectImg: "/mock.png",
       projectUrl: "https://github.com/harshaltupe12/mock-master",
+      tag: "AI",
     },
     {
       projectName: "Imaginary-INK",
-      projectDesc: "Imaginary-INK generates images from prompts.",
+      projectDesc: "Generates images from text prompts.",
       projectImg: "/ink.png",
       projectUrl: "https://github.com/harshaltupe12/imaginary_ink",
+      tag: "GenAI",
     },
     {
       projectName: "AICTE-Portal",
-      projectDesc: "Designed new curriculum for AICTE-affiliated universities.",
+      projectDesc: "New curriculum portal for AICTE-affiliated universities.",
       projectImg: "/image.png",
       projectUrl: "https://github.com/Yash-Dabhade/AICTE_PORTAL_SIH22",
+      tag: "Web",
     },
   ];
 
   return (
-    <div className="my-4">
-      {/* Title with Horizontal Lines */}
-      <div className="flex items-center justify-center md:mx-4 my-6">
-        {/* Left Line - Only visible on md and larger */}
-        <div className="hidden sm:block flex-1 h-[1px] bg-gray-300"></div>
+    <section className="bg-cream">
+      <div className="container-ed" style={{ paddingTop: 80, paddingBottom: 48 }}>
+        <SectionHeading
+          number="04"
+          label="Work"
+          title="Selected"
+          accent="projects"
+          href="https://github.com/harshaltupe12"
+          hrefLabel="All on GitHub"
+        />
 
-        {/* Title */}
-        <h2 className="mx-4 text-center">
-          <span className="md:text-6xl text-4xl">Personal {" "}</span>
-          <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent md:text-6xl text-4xl font-bold">
-            Projects
-          </span>
-        </h2>
-
-        {/* Right Line - Only visible on md and larger */}
-        <div className="hidden sm:block flex-1 h-[1px] bg-gray-300"></div>
-      </div>
-
-      {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:p-4 p-5 gap-6 md:gap-8 mt-4 md:mt-16">
-        {data.map((info) => (
-          <Link key={info.projectName} href={info.projectUrl} target="_blank">
-            <div className="border-2 p-4 rounded-xl hover:scale-105 transition-all duration-700 cursor-pointer hover:border hover:border-purple-300">
-              <div className="h-24">
-                <h2 className="font-bold">{info.projectName}</h2>
-                <p>{info.projectDesc}</p>
-              </div>
-              <div className="h-48 flex items-center justify-center border rounded-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--ed-hair)", border: "1px solid var(--ed-hair)" }}>
+          {data.map((info) => (
+            <Link
+              key={info.projectName}
+              href={info.projectUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-cream block no-underline transition-colors duration-200 ease-out"
+              style={{ padding: 24 }}
+            >
+              {/* Image */}
+              <div
+                className="overflow-hidden"
+                style={{ aspectRatio: "16 / 9", border: "1px solid var(--ed-hair)", backgroundColor: "var(--ed-bg-2)" }}
+              >
                 <img
                   src={info.projectImg}
                   alt={info.projectName}
-                  className="object-cover w-full h-full rounded-2xl p-2"
+                  className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
-            </div>
-          </Link>
-        ))}
+
+              {/* Meta */}
+              <div className="flex items-baseline justify-between mt-5">
+                <h3 className="text-ink m-0" style={{ fontSize: 20, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                  {info.projectName}
+                </h3>
+                <span className="eyebrow">{info.tag}</span>
+              </div>
+              <p className="text-soft m-0" style={{ fontSize: 15, lineHeight: 1.6, marginTop: 8, maxWidth: 460 }}>
+                {info.projectDesc}
+              </p>
+              <span className="eyebrow text-soft transition-colors duration-150 ease-out group-hover:text-rust" style={{ display: "inline-block", marginTop: 14 }}>
+                View repo ↗
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
