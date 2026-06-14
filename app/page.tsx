@@ -24,7 +24,7 @@ export default function Main() {
       <WhatIDo />
 
       <hr className="hair-rule" />
-      <div data-aos="fade-up"><About /></div>
+      <About />
 
       <hr className="hair-rule" />
       <div data-aos="fade-up"><Skills /></div>
