@@ -30,7 +30,7 @@ function Contact() {
           {/* Form */}
           <div>
             <p className="text-soft m-0" style={{ fontSize: 17, lineHeight: 1.6, maxWidth: 520, marginBottom: 28 }}>
-              Have a query, an idea, or a role that fits my skill set? Drop a line —
+              Have a query, an idea, or a role that fits my skill set? Drop a line.
               I'm happy to talk.
             </p>
             <form action="https://api.web3forms.com/submit" method="POST">

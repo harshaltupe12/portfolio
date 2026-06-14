@@ -13,7 +13,7 @@ const RESUME_URL =
 const COMMANDS = {
   help: "Available commands:  about · skills · projects · experience · contact · socials · resume · clear",
   about:
-    "Harshal Tupe — Computer Engineer and web developer. I build fast, accessible interfaces with React, Next.js and Node.js, from REST APIs to clean front ends.",
+    "Harshal Tupe. Computer Engineer and web developer. I build fast, accessible interfaces with React, Next.js and Node.js, from REST APIs to clean front ends.",
   skills:
     "HTML · CSS · SASS · JavaScript · TypeScript · React · Next.js · Node.js · Express · MongoDB · PostgreSQL · Neon · Firebase · Git · Vercel · UI/UX",
   projects:
@@ -29,7 +29,7 @@ const COMMANDS = {
 const CHIPS = ["help", "about", "skills", "projects", "contact", "clear"];
 
 const WELCOME = [
-  "harshal.zsh — interactive portfolio shell",
+  "harshal.zsh - interactive portfolio shell",
   "Type a command, or tap a chip below. Try `help` to begin.",
 ];
 
@@ -56,7 +56,7 @@ function Cmd() {
     }
     const response =
       COMMANDS[command.toLowerCase()] ||
-      `command not found: ${command} — type 'help' for the list`;
+      `command not found: ${command}. type 'help' for the list`;
     setHistory((h) => [...h, { command, response }]);
     setCmdLog((l) => [...l, command]);
     if (command.toLowerCase() === "resume") {
@@ -133,7 +133,7 @@ function Cmd() {
               className="font-mono"
               style={{ color: CREAM_SOFT, fontSize: 12, letterSpacing: "0.04em", marginLeft: 4 }}
             >
-              harshal — zsh
+              harshal - zsh
             </span>
           </div>
 

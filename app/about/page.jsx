@@ -26,7 +26,7 @@ function About() {
               style={{ fontSize: "clamp(17px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: 680, marginTop: 20 }}
             >
               Proficient in HTML, CSS, JavaScript, React, Node.js, Express, MongoDB
-              and UI/UX design — I bring analytical thinking, adaptability to new
+              and UI/UX design. I bring analytical thinking, adaptability to new
               tech, and a dedicated work ethic to every project.
             </p>
           </div>

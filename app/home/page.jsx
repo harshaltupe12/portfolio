@@ -53,7 +53,7 @@ function Home() {
             }}
           >
             Web developer and software engineer crafting fast, accessible
-            interfaces with React, Next.js, and modern tooling — from REST APIs to
+            interfaces with React, Next.js, and modern tooling, from REST APIs to
             pixel-clean front ends.
           </p>
 

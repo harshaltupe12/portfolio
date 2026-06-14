@@ -7,13 +7,13 @@ const SERVICES = [
     no: "01",
     title: "Front-end Development",
     description:
-      "Engaging, responsive interfaces with React, Next.js, JavaScript and Tailwind CSS — seamless experiences and clean, accessible markup.",
+      "Engaging, responsive interfaces with React, Next.js, JavaScript and Tailwind CSS. Seamless experiences and clean, accessible markup.",
   },
   {
     no: "02",
     title: "Back-end Development",
     description:
-      "Robust, scalable systems with Node.js, Express, MongoDB and PostgreSQL — efficient REST APIs and reliable data layers.",
+      "Robust, scalable systems with Node.js, Express, MongoDB and PostgreSQL. Efficient REST APIs and reliable data layers.",
   },
   {
     no: "03",
@@ -25,7 +25,7 @@ const SERVICES = [
     no: "04",
     title: "UI / UX Design",
     description:
-      "User-centered, visually considered interfaces — intuitive flows that raise satisfaction across digital products.",
+      "User-centered, visually considered interfaces. Intuitive flows that raise satisfaction across digital products.",
   },
 ];
 

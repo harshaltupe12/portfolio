@@ -53,7 +53,7 @@ function Footer() {
         {/* Bottom row */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow m-0">© 2026 Harshal Tupe</p>
-          <p className="eyebrow m-0">Built in Pune · React · Next.js</p>
+          <p className="eyebrow m-0">Built in Pune with React + Next.js</p>
         </div>
       </div>
     </footer>

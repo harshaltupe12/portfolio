@@ -13,7 +13,7 @@ function Education() {
             MGM College of Engineering & Technology, Kamothe, Navi Mumbai.
           </p>
           <p className="text-soft" style={{ fontSize: 14, marginTop: 4, fontFamily: "var(--mono)" }}>
-            University of Mumbai · Nov 2022 – May 2025
+            University of Mumbai · Nov 2022 - May 2025
           </p>
           <p className="text-soft" style={{ marginTop: 4 }}>BE in Computer Science</p>
           <div className="grid grid-cols-2 gap-4 mt-5">
@@ -45,7 +45,7 @@ function Education() {
             Government Polytechnic Pen, Pen.
           </p>
           <p className="text-soft" style={{ fontSize: 14, marginTop: 4, fontFamily: "var(--mono)" }}>
-            MSBTE · Nov 2018 – May 2022
+            MSBTE · Nov 2018 - May 2022
           </p>
           <p className="text-soft" style={{ marginTop: 4 }}>Diploma in Computer Technology</p>
           <div className="grid grid-cols-2 gap-4 mt-5">
