@@ -27,7 +27,7 @@ export default function Main() {
       <About />
 
       <hr className="hair-rule" />
-      <div data-aos="fade-up"><Skills /></div>
+      <Skills />
 
       <hr className="hair-rule" />
       <div data-aos="fade-up"><Projects /></div>
