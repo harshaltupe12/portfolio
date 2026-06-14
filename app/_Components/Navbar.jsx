@@ -121,13 +121,15 @@ function Navbar() {
           backgroundColor: "var(--ed-bg)",
           zIndex: 200,
           opacity: open ? 1 : 0,
-          transform: open || reduced ? "translateY(0)" : "translateY(-8px)",
+          transform: open || reduced ? "translateY(0)" : "translateY(-12px)",
           visibility: open ? "visible" : "hidden",
           pointerEvents: open ? "auto" : "none",
-          // enter slower than exit (Emil: exit ~70% of enter)
+          // Open: panel paints, then links cascade in (top to bottom).
+          // Close: reverse — links cascade out (bottom to top), THEN the panel
+          // holds opaque (140ms delay) and fades, hiding after everything settles.
           transition: open
-            ? "opacity 260ms var(--ease-out), transform 260ms var(--ease-out), visibility 0ms"
-            : "opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0ms 180ms",
+            ? "opacity 280ms var(--ease-out), transform 280ms var(--ease-out), visibility 0ms"
+            : "opacity 220ms var(--ease-out) 140ms, transform 220ms var(--ease-out) 140ms, visibility 0ms 360ms",
         }}
       >
         {/* Overlay top bar — mirrors header, with close */}
@@ -164,8 +166,11 @@ function Navbar() {
                 color: isActive(l.href) ? "var(--ed-accent)" : "var(--ed-fg)",
                 opacity: open ? 1 : 0,
                 transform: open || reduced ? "none" : "translateY(8px)",
-                transition: "opacity 300ms var(--ease-out), transform 300ms var(--ease-out)",
-                transitionDelay: open ? `${90 + i * 45}ms` : "0ms",
+                transition: open
+                  ? "opacity 300ms var(--ease-out), transform 300ms var(--ease-out)"
+                  : "opacity 200ms var(--ease-out), transform 200ms var(--ease-out)",
+                // open: top→bottom stagger. close: reverse, bottom→top.
+                transitionDelay: open ? `${90 + i * 45}ms` : `${(LINKS.length - i) * 35}ms`,
               }}
             >
               {l.label}
@@ -184,7 +189,9 @@ function Navbar() {
               padding: "20px 0",
               opacity: open ? 1 : 0,
               transform: open || reduced ? "none" : "translateY(8px)",
-              transition: "opacity 300ms var(--ease-out), transform 300ms var(--ease-out)",
+              transition: open
+                ? "opacity 300ms var(--ease-out), transform 300ms var(--ease-out)"
+                : "opacity 200ms var(--ease-out), transform 200ms var(--ease-out)",
               transitionDelay: open ? `${90 + LINKS.length * 45}ms` : "0ms",
             }}
           >

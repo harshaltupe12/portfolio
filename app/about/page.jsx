@@ -15,19 +15,21 @@ function About() {
               className="text-soft m-0"
               style={{ fontSize: "clamp(17px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: 680 }}
             >
-              An ambitious Computer Engineer, deeply passionate about software
-              development and building web applications that push technological
-              boundaries. With a strong foundation in Data Structures, Algorithms,
-              Database Management and Web Development, I design and implement
-              solutions to complex problems.
+              I'm a Senior Software Engineer passionate about building scalable
+              products, intelligent systems, and technology that creates real-world
+              impact. My work spans the entire product lifecycle, from researching
+              complex problems and designing robust architectures to leading
+              development teams and delivering production-ready solutions.
             </p>
             <p
               className="text-soft"
               style={{ fontSize: "clamp(17px, 1.8vw, 20px)", lineHeight: 1.6, maxWidth: 680, marginTop: 20 }}
             >
-              Proficient in HTML, CSS, JavaScript, React, Node.js, Express, MongoDB
-              and UI/UX design. I bring analytical thinking, adaptability to new
-              tech, and a dedicated work ethic to every project.
+              With experience across software engineering, AI-driven applications,
+              cloud infrastructure, and system design, I focus on creating reliable,
+              maintainable, and high-performing products. I enjoy turning ambitious
+              ideas into practical solutions, solving challenging technical problems,
+              and building systems that can scale with business growth.
             </p>
           </div>
 
