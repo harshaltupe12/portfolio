@@ -6,6 +6,7 @@ import Home from "./home/page";
 import WhatIDo from "./info/page";
 import Projects from "./projects/page";
 import Skills from "./skills/page";
+import FunFacts from "./funfacts/page";
 import Footer from "../app/_Components/Footer.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -28,6 +29,9 @@ export default function Main() {
 
       <hr className="hair-rule" />
       <Skills />
+
+      <hr className="hair-rule" />
+      <FunFacts />
 
       <hr className="hair-rule" />
       <div data-aos="fade-up"><Projects /></div>

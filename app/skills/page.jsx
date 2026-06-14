@@ -10,7 +10,7 @@ const GROUPS = [
     no: "01",
     label: "Languages",
     desc: "The core languages I build and think in.",
-    items: ["JavaScript", "TypeScript", "Python", "Go", "HTML", "CSS"],
+    items: ["JavaScript", "TypeScript", "Python", "Go", "HTML", "CSS", "C#"],
   },
   {
     no: "02",
