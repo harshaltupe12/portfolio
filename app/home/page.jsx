@@ -28,19 +28,21 @@ function Home() {
           <h1
             className="fu text-ink font-sans"
             style={{
-              fontSize: "clamp(44px, 7vw, 96px)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.04em",
+              fontSize: "clamp(34px, 5vw, 68px)",
+              lineHeight: 1.05,
+              letterSpacing: "-0.035em",
               fontWeight: 600,
               margin: 0,
+              paddingBottom: 4,
             }}
           >
             Harshal Tupe.
             <br />
+            Building{" "}
             <span className="font-serif italic text-rust" style={{ fontWeight: 400, letterSpacing: "-0.02em" }}>
-              Builder
+              products
             </span>{" "}
-            of the web.
+            that solve real-world problems.
           </h1>
 
           <p
