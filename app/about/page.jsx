@@ -135,7 +135,7 @@ function About() {
               <span className="text-ink" style={{ fontSize: 15, fontWeight: 500 }}>
                 Harshal Tupe
               </span>
-              <span className="eyebrow">Pune, India</span>
+              <span className="eyebrow">Mumbai, India</span>
             </div>
             <p className="text-soft" style={{ fontSize: 14, lineHeight: 1.5, marginTop: 4 }}>
               Senior Software Engineer

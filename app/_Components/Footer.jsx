@@ -4,7 +4,7 @@ import Link from "next/link";
 const LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/harshal-tupe/" },
   { label: "GitHub", href: "https://github.com/harshaltupe12" },
-  { label: "Instagram", href: "https://www.instagram.com/harshal.tupe_/" },
+  { label: "Instagram", href: "https://www.instagram.com/harshallll.exe" },
   { label: "Email", href: "mailto:harshaltupe12@gmail.com" },
 ];
 
@@ -23,14 +23,6 @@ function Footer() {
           </span>
           .
         </h2>
-
-        <Link
-          href="/contact"
-          className="inline-flex items-center text-ink transition-colors duration-150 ease-out hover:text-rust"
-          style={{ marginTop: 24, fontSize: 18, borderBottom: "1px solid var(--ed-hair-2)", paddingBottom: 4 }}
-        >
-          Get in touch&nbsp;→
-        </Link>
 
         {/* Links row */}
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ marginTop: 56 }}>
@@ -53,7 +45,7 @@ function Footer() {
         {/* Bottom row */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="eyebrow m-0">© 2026 Harshal Tupe</p>
-          <p className="eyebrow m-0">Built in Pune with React + Next.js</p>
+          <p className="eyebrow m-0">Built in Mumbai with React + Next.js</p>
         </div>
       </div>
     </footer>

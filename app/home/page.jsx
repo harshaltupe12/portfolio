@@ -22,7 +22,7 @@ function Home() {
         {/* Left — copy (centered on tablet only) */}
         <div className="md:text-center lg:text-left">
           <p className="eyebrow fu" style={{ marginBottom: 24 }}>
-            Pune, India · Available for work
+            Mumbai, India · Available for work
           </p>
 
           {/* Name — primary identity, Geist Pixel (soft pixel, ties to hero art) */}

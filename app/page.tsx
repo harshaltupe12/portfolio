@@ -37,10 +37,10 @@ export default function Main() {
       <div data-aos="fade-up"><Projects /></div>
 
       <hr className="hair-rule" />
-      <div data-aos="fade-up"><Education /></div>
+      <Education />
 
       <hr className="hair-rule" />
-      <div data-aos="fade-up"><Contact /></div>
+      <Contact />
 
       <Footer />
     </div>

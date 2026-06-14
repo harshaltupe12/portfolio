@@ -22,7 +22,7 @@ const COMMANDS = {
     "3+ years building web apps · 20+ projects shipped · focus on product UX + fullstack delivery.",
   contact: "Email: harshaltupe12@gmail.com    Phone: +91 93709 46170",
   socials:
-    "GitHub: github.com/harshaltupe12    LinkedIn: linkedin.com/in/harshal-tupe    Instagram: @harshal.tupe_",
+    "GitHub: github.com/harshaltupe12    LinkedIn: linkedin.com/in/harshal-tupe    Instagram: @harshallll.exe",
   resume: "Opening resume in a new tab…",
 };
 
