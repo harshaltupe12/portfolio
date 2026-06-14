@@ -45,12 +45,13 @@ function About() {
                 maxWidth: 680,
               }}
             >
-              I'm a Senior Software Engineer who runs on caffeine and curiosity,
-              building scalable products,{" "}
+              I'm a{" "}
               <span className="font-serif italic text-rust" style={{ fontWeight: 400 }}>
-                intelligent systems
-              </span>
-              , and tech that makes a real-world dent, not just one that works on my machine.
+                Senior Software Engineer
+              </span>{" "}
+              who runs on caffeine and curiosity, building scalable products,
+              and tech that makes a real-world dent, not just
+              one that works on my machine.
             </motion.p>
 
             {/* Supporting paragraphs */}
