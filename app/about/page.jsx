@@ -50,7 +50,7 @@ function About() {
                 Senior Software Engineer
               </span>{" "}
               who runs on caffeine and curiosity, building scalable products,
-              and tech that makes a real-world dent, not just
+              and tech that makes a real-world impact, not just
               one that works on my machine.
             </motion.p>
 
