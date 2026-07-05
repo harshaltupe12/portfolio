@@ -1,44 +1,149 @@
 "use client";
-import { TextGenerateEffect } from "../../components/ui/text-generate-effect";
 import Image from "next/image";
 import React from "react";
-import { Meteors } from "../../components/ui/meteors";
+import { motion, useReducedMotion } from "framer-motion";
+import SectionHeading from "../_Components/SectionHeading";
+
+const EASE = [0.16, 1, 0.3, 1];
+
+const FOCUS = [
+  "Software Engineering",
+  "AI-driven Applications",
+  "Cloud Infrastructure",
+  "System Design",
+];
 
 function About() {
-  const words = 'As an ambitious undergraduate Computer Engineer, I am deeply passionate about software development and thrive on creating cutting-edge web applications that push technological boundaries. With a strong foundation in computer engineering principles and coursework in Data Structures, Algorithms, Database Management Systems, and Web Development I am adept at designing and implementing innovative solutions to complex problems. Proficient in HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, and UI/UX design, I bring strong analytical skills, adaptability to new technologies, and a dedicated work ethic to every project. I am committed to staying updated with industry trends and delivering impactful solutions that drive project success.'
+  const reduce = useReducedMotion();
+  const rise = (delay = 0) => ({
+    initial: reduce ? false : { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.3 },
+    transition: { duration: 0.55, delay, ease: EASE },
+  });
+
   return (
-    <div className="md:mx-6 mx-4 mb-6">
-      <div className=" w-full relative">
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
-        <div className="relative shadow-xl dark:bg-black bg-[#ededed]  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start">
-          <div className="">
-            <h1 className="text-6xl text-center dark:text-white mb-4 relative z-50">
-              <span className="text-black dark:text-white">About</span>{" "}
-              <span className="bg-clip-text bg-gradient-to-tl from-blue-600 via-red-400 to-violet-600 text-transparent font-bold">
-                Me
-              </span>
-            </h1>
-            <div className="p-2 flex flex-col md:flex-row  rounded-lg my-4 gap-2 md:gap-0">
-              <div className="info flex-[4] p-2 dark:text-white text-black">
-                <TextGenerateEffect words={words} />
+    <section className="bg-cream" id="about">
+      <div className="container-ed section-y">
+        <motion.div {...rise(0)}>
+          <SectionHeading number="02" label="About" title="A bit about" accent="me" />
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_340px] gap-12 md:gap-16 items-start">
+          {/* Left — narrative */}
+          <div>
+            {/* Lead statement */}
+            <motion.p
+              {...rise(0.06)}
+              className="text-ink"
+              style={{
+                fontSize: "clamp(20px, 2.4vw, 28px)",
+                lineHeight: 1.35,
+                letterSpacing: "-0.015em",
+                fontWeight: 500,
+                margin: 0,
+                maxWidth: 680,
+              }}
+            >
+              I'm a{" "}
+              <span className="font-serif italic text-rust" style={{ fontWeight: 400 }}>
+                Senior Software Engineer
+              </span>{" "}
+              who runs on caffeine and curiosity, building scalable products,
+              and tech that makes a real-world dent, not just
+              one that works on my machine.
+            </motion.p>
+
+            {/* Supporting paragraphs */}
+            <motion.p
+              {...rise(0.12)}
+              className="text-soft"
+              style={{ fontSize: "clamp(16px, 1.7vw, 18px)", lineHeight: 1.7, maxWidth: 660, marginTop: 24 }}
+            >
+              My work covers the whole product lifecycle: untangling messy problems
+              on a whiteboard, designing architectures that won't page me at 3am, and
+              shipping production-ready code that survives first contact with actual
+              users.
+            </motion.p>
+            <motion.p
+              {...rise(0.16)}
+              className="text-soft"
+              style={{ fontSize: "clamp(16px, 1.7vw, 18px)", lineHeight: 1.7, maxWidth: 660, marginTop: 18 }}
+            >
+              I love turning "wait, is this even possible?" ideas into things that
+              actually ship, debugging the gnarly edge cases everyone else quietly
+              ignores, and building systems that scale on solid engineering instead
+              of duct tape and prayers.
+            </motion.p>
+
+            {/* Focus areas */}
+            <motion.div {...rise(0.22)} style={{ marginTop: 44, maxWidth: 660 }}>
+              <p className="eyebrow" style={{ marginBottom: 4 }}>
+                Focus areas
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                {FOCUS.map((f, i) => (
+                  <motion.div
+                    key={f}
+                    className="flex items-center gap-3"
+                    style={{ padding: "16px 0", borderTop: "1px solid var(--ed-hair)" }}
+                    initial={reduce ? false : { opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.26 + i * 0.07, ease: EASE }}
+                  >
+                    <span className="eyebrow text-faint" style={{ fontSize: 11 }}>
+                      0{i + 1}
+                    </span>
+                    <span className="text-ink" style={{ fontSize: 16, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                      {f}
+                    </span>
+                  </motion.div>
+                ))}
               </div>
-              <div className="image flex-[1] p-2 flex items-center justify-center">
-                <Image
-                  src={"/main.jpg"}
-                  width={200}
-                  height={200}
-                  alt=""
-                  className="rounded-full"
-                />
-              </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Meaty part - Meteor effect */}
-          <Meteors number={20} />
+          {/* Right — portrait */}
+          <motion.div {...rise(0.1)} className="md:justify-self-end w-full" style={{ maxWidth: 340 }}>
+            {/* Static frame + offset shadow; image eases from a slight zoom */}
+            <div
+              className="relative overflow-hidden w-full"
+              style={{
+                aspectRatio: "4 / 5",
+                border: "1px solid var(--ed-hair)",
+                boxShadow: "8px 10px 0 var(--ed-hair-2)",
+              }}
+            >
+              <motion.div
+                className="absolute inset-0"
+                initial={reduce ? false : { opacity: 0, scale: 1.08 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: EASE }}
+              >
+                <Image
+                  src="/main.jpg"
+                  fill
+                  sizes="(max-width: 768px) 90vw, 340px"
+                  alt="Harshal Tupe"
+                  className="object-cover"
+                />
+              </motion.div>
+            </div>
+            <div className="flex items-center justify-between" style={{ marginTop: 18 }}>
+              <span className="text-ink" style={{ fontSize: 15, fontWeight: 500 }}>
+                Harshal Tupe
+              </span>
+              <span className="eyebrow">Mumbai, India</span>
+            </div>
+            <p className="text-soft" style={{ fontSize: 14, lineHeight: 1.5, marginTop: 4 }}>
+              Senior Software Engineer
+            </p>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

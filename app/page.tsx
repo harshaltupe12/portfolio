@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import About from "./about/page";
 import Contact from "./contact/page";
 import Education from "./education/page";
@@ -6,57 +6,46 @@ import Home from "./home/page";
 import WhatIDo from "./info/page";
 import Projects from "./projects/page";
 import Skills from "./skills/page";
+import Experience from "./experience/page";
+import FunFacts from "./funfacts/page";
 import Footer from "../app/_Components/Footer.jsx";
-import Cmd from "./terminal/page"
-import Velocity from "./velocity/page"
-import Flip from "./flip/page"
-import Containerscroll from "./containerscroll/page";
-import AOS from 'aos'
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 export default function Main() {
-  useEffect(()=>{
-    AOS.init();
-  }, [1000])
+  useEffect(() => {
+    AOS.init({ duration: 600, once: true, easing: "ease-out" });
+  }, []);
+
   return (
-    <div className="">
+    <div className="bg-cream">
+      <Home />
 
-      <div className="">
-        <Home />
-      </div>
-
-      <div className="md:my-10 my-0" data-aos="fade-up">
+      <hr className="hair-rule" />
       <WhatIDo />
-      </div>
 
-      <div className="md:my-24 my-4" data-aos="fade-up">
-      <Cmd />
-      </div>
-
-      <div className="md:my-32 my-4" data-aos="fade-up">
+      <hr className="hair-rule" />
       <About />
-      </div>
 
-      <div className="md:my-28 my-24" data-aos="fade-up">
+      <hr className="hair-rule" />
+      <Experience />
+
+      <hr className="hair-rule" />
       <Skills />
-      </div>
 
-      <div className="md:my-28 my-24" data-aos="fade-up">
-      <Projects />
-      </div>
+      <hr className="hair-rule" />
+      <FunFacts />
 
-      <div className="md:my-28 my-8" data-aos="fade-up">
+      <hr className="hair-rule" />
       <Education />
-      </div>
 
-      <div className="md:my-28 my-8" data-aos="fade-up">
-      <Containerscroll/>
-      </div>
+      <hr className="hair-rule" />
+      <div data-aos="fade-up"><Projects /></div>
 
-      <div className="md:mx-6 mx-0 my-4" data-aos="fade-up">
-        <Contact />
-      </div>
+      <hr className="hair-rule" />
+      <Contact />
+
       <Footer />
     </div>
   );
