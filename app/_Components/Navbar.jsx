@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const LINKS = [
-  { label: "About", href: "/about" },
-  { label: "Skills", href: "/skills" },
-  { label: "Projects", href: "/projects" },
-  { label: "Education", href: "/education" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", id: "about", href: "/#about" },
+  { label: "Experience", id: "experience", href: "/#experience" },
+  { label: "Skills", id: "skills", href: "/#skills" },
+  { label: "Education", id: "education", href: "/#education" },
+  { label: "Projects", id: "projects", href: "/#projects" },
+  { label: "Contact", id: "contact", href: "/#contact" },
 ];
 
 const RESUME =
@@ -20,6 +21,7 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -53,7 +55,23 @@ function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const isActive = (href) => pathname === href;
+  // scroll-spy: highlight the nav item for the section in view
+  useEffect(() => {
+    const els = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean);
+    if (!els.length) return; // not on the home page
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveId(e.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [pathname]);
+
+  const isActive = (id) => activeId === id;
 
   return (
     <>
@@ -78,9 +96,9 @@ function Navbar() {
           </Link>
 
           {/* Desktop links — animated underline */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden lg:flex items-center gap-6">
             {LINKS.map((l) => (
-              <Link key={l.href} href={l.href} className="navlink" data-active={isActive(l.href)}>
+              <Link key={l.href} href={l.href} className="navlink" data-active={isActive(l.id)}>
                 {l.label}
                 <span className="navlink-underline" />
               </Link>
@@ -92,7 +110,7 @@ function Navbar() {
             href={RESUME}
             target="_blank"
             rel="noopener noreferrer"
-            className="press hidden md:inline-flex items-center text-[14px] font-medium text-ink border border-hair-2 px-[14px] py-2 hover:border-rust hover:text-rust"
+            className="press hidden lg:inline-flex items-center text-[14px] font-medium text-ink border border-hair-2 px-[14px] py-2 hover:border-rust hover:text-rust"
           >
             Resume&nbsp;→
           </Link>
@@ -103,7 +121,7 @@ function Navbar() {
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="press md:hidden flex items-center justify-center text-ink"
+            className="press lg:hidden flex items-center justify-center text-ink"
             style={{ width: 44, height: 44, marginRight: -10 }}
           >
             <Menu size={22} />
@@ -113,7 +131,7 @@ function Navbar() {
 
       {/* Mobile full-screen overlay menu */}
       <div
-        className="md:hidden fixed inset-0 flex flex-col"
+        className="lg:hidden fixed inset-0 flex flex-col"
         role="dialog"
         aria-modal="true"
         aria-hidden={!open}
@@ -163,7 +181,7 @@ function Navbar() {
                 letterSpacing: "-0.02em",
                 padding: "20px 0",
                 borderBottom: "1px solid var(--ed-hair)",
-                color: isActive(l.href) ? "var(--ed-accent)" : "var(--ed-fg)",
+                color: isActive(l.id) ? "var(--ed-accent)" : "var(--ed-fg)",
                 opacity: open ? 1 : 0,
                 transform: open || reduced ? "none" : "translateY(8px)",
                 transition: open

@@ -41,6 +41,26 @@ const GROUPS = [
     desc: "Shipping, scaling, and everything in between.",
     items: ["OVHcloud", "Vercel", "AWS", "Docker", "Jenkins", "Git", "GitHub", "Postman", "OHIF Viewer", "MinIO"],
   },
+  {
+    no: "05",
+    label: "Protocols & Standards",
+    desc: "How my systems talk, from the web to the operating room.",
+    wide: true,
+    items: [
+      "REST",
+      "GraphQL",
+      "WebSocket",
+      "HTTP / HTTPS",
+      "MQTT",
+      "TCP / IP",
+      "DICOM",
+      "DICOMweb",
+      "OPC UA",
+      "OPC DA",
+      "Modbus RTU",
+      "Modbus TCP",
+    ],
+  },
 ];
 
 function Skills() {
@@ -55,7 +75,7 @@ function Skills() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: EASE }}
         >
-          <SectionHeading number="03" label="Skills" title="Tools I" accent="work with" />
+          <SectionHeading number="04" label="Skills" title="Tools I" accent="work with" />
         </motion.div>
 
         {/* Hairline grid — same structure as "How I work" for cohesion */}
@@ -63,7 +83,9 @@ function Skills() {
           {GROUPS.map((g, i) => (
             <motion.div
               key={g.no}
-              className="bg-cream py-8 md:p-10 border-b last:border-b-0 md:border-b-0 border-[var(--ed-hair)]"
+              className={`bg-cream py-8 md:p-10 border-b last:border-b-0 md:border-b-0 border-[var(--ed-hair)]${
+                g.wide ? " md:col-span-2" : ""
+              }`}
               initial={reduce ? false : { opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
@@ -80,9 +102,9 @@ function Skills() {
                 {g.desc}
               </p>
 
-              {/* Technologies — tidy two-column list */}
+              {/* Technologies — tidy list; wider card flows into more columns */}
               <div
-                className="grid grid-cols-2 gap-x-8 gap-y-3"
+                className={`grid gap-x-8 gap-y-3 ${g.wide ? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4" : "grid-cols-2"}`}
                 style={{ marginTop: 26, paddingTop: 24, borderTop: "1px solid var(--ed-hair)" }}
               >
                 {g.items.map((name) => (

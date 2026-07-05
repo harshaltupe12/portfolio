@@ -81,7 +81,7 @@ function Home() {
 
           <div className="fu4 flex flex-col sm:flex-row sm:flex-wrap sm:items-center md:justify-center lg:justify-start gap-3 sm:gap-4" style={{ marginTop: 36 }}>
             <Link
-              href="/contact"
+              href="/#contact"
               className="press inline-flex w-full sm:w-auto items-center justify-center bg-rust text-[15px] font-medium px-5 py-3 hover:scale-[1.02]"
               style={{ color: "var(--ed-bg)" }}
             >

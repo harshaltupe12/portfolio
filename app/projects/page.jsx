@@ -36,10 +36,10 @@ function Projects() {
   ];
 
   return (
-    <section className="bg-cream">
+    <section className="bg-cream" id="projects">
       <div className="container-ed section-y">
         <SectionHeading
-          number="04"
+          number="06"
           label="Work"
           title="Selected"
           accent="projects"

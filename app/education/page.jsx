@@ -26,7 +26,7 @@ function Education() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="bg-cream">
+    <section className="bg-cream" id="education">
       <div className="container-ed section-y">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 16 }}

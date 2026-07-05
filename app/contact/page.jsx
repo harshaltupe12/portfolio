@@ -37,7 +37,7 @@ function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-16 items-start">
           {/* Left — headline + links */}
           <motion.div {...rise(0)}>
-            <p className="eyebrow" style={{ marginBottom: 20 }}>06 / Contact</p>
+            <p className="eyebrow" style={{ marginBottom: 20 }}>07 / Contact</p>
 
             <h2
               className="text-ink font-sans m-0"

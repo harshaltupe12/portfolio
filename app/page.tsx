@@ -6,6 +6,7 @@ import Home from "./home/page";
 import WhatIDo from "./info/page";
 import Projects from "./projects/page";
 import Skills from "./skills/page";
+import Experience from "./experience/page";
 import FunFacts from "./funfacts/page";
 import Footer from "../app/_Components/Footer.jsx";
 import AOS from "aos";
@@ -28,16 +29,19 @@ export default function Main() {
       <About />
 
       <hr className="hair-rule" />
+      <Experience />
+
+      <hr className="hair-rule" />
       <Skills />
 
       <hr className="hair-rule" />
       <FunFacts />
 
       <hr className="hair-rule" />
-      <div data-aos="fade-up"><Projects /></div>
+      <Education />
 
       <hr className="hair-rule" />
-      <Education />
+      <div data-aos="fade-up"><Projects /></div>
 
       <hr className="hair-rule" />
       <Contact />

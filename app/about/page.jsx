@@ -23,7 +23,7 @@ function About() {
   });
 
   return (
-    <section className="bg-cream">
+    <section className="bg-cream" id="about">
       <div className="container-ed section-y">
         <motion.div {...rise(0)}>
           <SectionHeading number="02" label="About" title="A bit about" accent="me" />
